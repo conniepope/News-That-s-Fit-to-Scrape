@@ -33,7 +33,7 @@ mongoose.connect(MONGODB_URI);
 // A GET route for scraped the website
 app.get("/scrape", function(req, res) {
     // Axios get the body of the html
-    axios.get("https://www.goodnewsnetwork.org/category/news/inspiring/")
+    axios.get("https://www.goodnewsnetwork.org/category/news/laughs/")
         .then(function(response) {
 
             // Load to Cheerio and save as a variable
