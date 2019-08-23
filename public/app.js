@@ -1,10 +1,13 @@
 //Logic and functionality -------------------
 
 //Get articles as a JSON -----
-
+$.getJSON("/articles", function(data) {
     //Run loop
-
+    for (var i = 0; i < data.length; i++) {
         //Display on page
+        $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br  />" + data[i].link + "<br />" + data[i].image + "</p>")
+    }
+});
 
 
 //Listener for when client clicks  a <p> tag -----

@@ -30,7 +30,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 mongoose.connect(MONGODB_URI);
 
 // ROUTING -----------------------
-// A GET route for scraped the website
+// A GET route for the scraped website
 app.get("/scrape", function(req, res) {
     // Axios get the body of the html
     axios.get("https://www.goodnewsnetwork.org/category/news/laughs/")
@@ -38,17 +38,15 @@ app.get("/scrape", function(req, res) {
 
             // Load to Cheerio and save as a variable
             var $ = cheerio.load(response.data);
-            // Grab every bookmark within an "a tag"
-            $("a bookmark").each(function(i, element) {
+            // Grab every bookmark within an "a tag" ????
+            $("div[class=td-module-thumb] a").each(function(i, element) {
                 // Save an empty result object
                 var result = {};
                 // Save features as properties of the result object
                 result.title = $(this)
-                    .children("title")
-                    .text();
+                    .attr("title")
                 result.link = $(this)
-                    .children("a")
-                    .attr("href");
+                    .attr("href")
                 result.image = $(this)
                     .children("img")
                     .attr("src");
