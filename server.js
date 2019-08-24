@@ -24,12 +24,27 @@ app.use(express.json());
 // make static folder public
 app.use(express.static("public"));
 
+// Handlebars set up
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// Import page routing
+// var routes = require("./controller/controller.js");
+// app.use(routes);
+
 // Connect mongo database to mongoose
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 mongoose.connect(MONGODB_URI);
 
 // ROUTING -----------------------
+// A GET route for main page
+app.get("/", function(req, res) {
+    db.Article.find(function(data) {
+        console.log("This is the index page.")
+        res.render("index", data)
+    })
+})
 // A GET route for the scraped website
 app.get("/scrape", function(req, res) {
     // Axios get the body of the html
@@ -38,13 +53,14 @@ app.get("/scrape", function(req, res) {
 
             // Load to Cheerio and save as a variable
             var $ = cheerio.load(response.data);
-            // Grab every bookmark within an "a tag" ????
+
             $("div[class=td-module-thumb] a").each(function(i, element) {
                 // Save an empty result object
                 var result = {};
                 // Save features as properties of the result object
                 result.title = $(this)
                     .attr("title")
+                    .addClass("title")
                 result.link = $(this)
                     .attr("href")
                 result.image = $(this)
@@ -70,8 +86,9 @@ app.get("/scrape", function(req, res) {
 // A GET route for getting all Articles from the db
 app.get("/articles", function(req, res) {
     db.Article.find({})
-    .then(function(dbArticle) {
-        res.json(dbArticle);
+    .then(function(data) {
+        res.json(data)
+        // res.render("index", data);
     })
     .catch(function(err) {
         res.json(err);
