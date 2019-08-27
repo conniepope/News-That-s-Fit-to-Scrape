@@ -29,13 +29,21 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Import page routing
-// var routes = require("./controller/controller.js");
-// app.use(routes);
+var router = express.Router();
+require("./controller/controller");
+app.use(router);
 
 // Connect mongo database to mongoose
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, function(err) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("Mongoose connection is successful.");
+    }
+});
 
 // ROUTING -----------------------
 // A GET route for main page
@@ -60,17 +68,17 @@ app.get("/scrape", function(req, res) {
                 // Save features as properties of the result object
                 result.title = $(this)
                     .attr("title")
-                    .addClass("title")
                 result.link = $(this)
                     .attr("href")
                 result.image = $(this)
                     .children("img")
                     .attr("src");
 
-        // Create a new Article using the result object from the scraping
+        // Create new Articles in db using the result object from the scraping
         db.Article.create(result)
             .then(function(dbArticle) {
                 // Added result
+                res.json(result)
                 console.log(dbArticle);
             })
             .catch(function(err) {
@@ -78,8 +86,7 @@ app.get("/scrape", function(req, res) {
             });
 
         });
-        // Sends message to client
-        res.send("Scrape Complete")
+        console.log("Scrape Complete")
     });
 });
 

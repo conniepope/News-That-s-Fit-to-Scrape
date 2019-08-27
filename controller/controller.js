@@ -1,15 +1,21 @@
 var express = require("express");
 var router = express.Router();
 
-var Article = require("../models/Article.js");
-var Note = require("../models/Note");
+// var Article = require("../models/Article.js");
+// var Note = require("../models/Note");
+
 
 // Create route for main page
 router.get("/", function(req, res) {
-    Article.find(function(data) {
-        console.log("This is the index page.")
-        res.render("index", data)
-    })
+    console.log("This is the index page.")
+    res.render("index")
+    
+})
+
+router.get("/saved", function(req, res) {
+    console.log("This is the saved page.")
+    res.render("saved")
+    
 })
 
 // Logic to display info
