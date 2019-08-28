@@ -1,4 +1,5 @@
 //Logic and functionality -------------------
+var id;
 
 //Get articles as a JSON -----
 $.getJSON("/articles", function(data) {
@@ -6,11 +7,11 @@ $.getJSON("/articles", function(data) {
     //Run loop
     for (var i = 0; i < data.length; i++) {
         //Display on page
-        $("#articles").append(
-            "<h4 data-id='" + data[i]._id + "'>" + data[i].title + "</h4>",
+        $("#articles").prepend(
+            "<h4>" + data[i].title + "</h4>",
             "<img src='" + data[i].image + "' class='photos'</img>",
-            // "<a href='" + data[i].link + "' class='links'>Show Me the Story</a>",
             "<a role='button' class='links' id='button' href='" + data[i].link + "'>Link to the Story</a>",
+            "<a role='button' class='articleNotes' id='button' data-id='" + data[i]._id + "'>Article Notes</a>",
             "<p>", "<p>"
         );
     };
@@ -31,26 +32,30 @@ $(document).on("click", "#scraper", function() {
     })
 })
 
-//Listener for when client clicks an <h3> tag --------------
-$(document).on("click", "h4", function(){
-    console.log("h4 clicked");
+//Listener for when client clicks Article Notes button --------------
+$(document).on("click", ".articleNotes", function(){
+    console.log("articleNotes button clicked");
     //Empty notes from note section?
     // $("#notes").empty();
     //Save id from <p> tag to a variable
     var articleID = $(this).attr("data-id");
     //Make ajax call for the Article
+    console.log(articleID)
     $.ajax({
         method: "GET",
         url: "/articles/" + articleID
+    
+        // IS THERE SOMETHING MISSING HERE???????? data: ?
     })
     //.then, add note data to the page
     .then(function(data) {
         console.log(data)
         //open note modal form
+        id = articleID;   
         $("#notes").modal("show");
-        
-        //title
-        // $("#notes").append("<h3>" + data.title + "</h3>"),
+
+        // //title
+        // $("#notes").append("<h4>" + data.title + "</h4>"),
         // //an input to enter a new title
         // ("<input id='titleInput' name='title'>"),
         // //a textarea to add a new note body
@@ -71,15 +76,17 @@ $(document).on("click", "h4", function(){
         //         url: "/articles/" + data._id
         //     })
         //     console.log("note posted")
-    })
-});     
+        // }
+    });    
+}) 
 
 
 //Listener for when the submitNote button is clicked -------------
 $(document).on("click", "#submitNote", function(){
 
     //Get id of article from submit button
-    var articleID = $(this).attr("data-id");
+    var articleID = id;
+    console.log(articleID)
     //Run POST request to change the note to the new input data values
     $.ajax({
         method: "POST",
@@ -94,10 +101,11 @@ $(document).on("click", "#submitNote", function(){
         //log the response
         console.log(data);
         //empty the notes section
-        $("#notes").empty();
-        window.location.replace("/articles")
+        // $("#notes").empty();
     })
     //Remove values from input & textarea for note entry
     $("#titleInput").val("");
     $("#bodyInput").val("");
+    $("#notes").modal("hide");
+
 });

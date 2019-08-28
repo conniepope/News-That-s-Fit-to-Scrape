@@ -35,14 +35,47 @@ body {
 #button {
     color: black;
     font-family: 'Acme', sans-serif;
-    /* text-decoration: none; */
+    text-decoration: none;
     padding: 5px 10px;
     border: 1px solid black;
     border-radius: 10px;
     background-color: white;
     margin-left: 10px;
+    cursor:pointer;
+
 }
 
 img {
     border: 2px solid black; 
 }
+
+#submitNote {
+    background-color: rgb(230, 88, 36);
+}
+
+.modal-title {
+    color: rgb(230, 88, 36);
+}
+
+@media screen and (max-width: 700px) {
+    h1 {
+        font-size: 1.9em;
+    }
+
+    h2 {
+        font-size: 1.7em;
+    }
+
+    #button {
+        margin: 10px;  
+        width: 150px;     
+    }
+
+    img {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+   h4 {
+       margin-top: 20px;
+   }

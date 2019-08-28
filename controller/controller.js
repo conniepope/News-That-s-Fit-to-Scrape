@@ -12,9 +12,9 @@ router.get("/", function(req, res) {
     
 })
 
-router.get("/saved", function(req, res) {
-    console.log("This is the saved page.")
-    res.render("saved")
+router.get("/notes", function(req, res) {
+    console.log("This is the notes page.")
+    res.render("notes")
     
 })
 

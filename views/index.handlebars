@@ -15,30 +15,29 @@
 <div class="modal" id="notes" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Write a note for this article: {{#each Article.title}}{{/each}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Note Title</label>
-                    <input type="text" class="form-control" id="titleInput">
-                </div>
-                
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Note</label>
-                    <textarea class="form-control" id="bodyInput" rows="3"></textarea>
-                </div>
-                </div>
-                <div class="modal-footer">
-                    {{!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                    <button type="button" class="btn btn-primary" id="submitNote">Save Note</button>
-                </div>
-            </form>
+            <div class="modal-header">
+                <h5 class="modal-title">Write a note for this article: {{#each Article.title}}{{/each}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Note Title</label>
+                        <input type="text" class="form-control" id="titleInput">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Note</label>
+                        <textarea class="form-control" id="bodyInput" rows="3"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        {{!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                        <button type="button" class="btn btn-primary" id="submitNote">Save Note</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

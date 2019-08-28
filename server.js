@@ -119,11 +119,12 @@ app.post("/articles/:id", function (req, res) {
     db.Note.create(req.body)
     .then(function(dbNote) {
         return db.Article.findOneAndUpdate({ _id: req.params.id }, {    
-            // { new: true } tells the query that we want it to return the updated Library -- it returns the original by default
+            // { new: true } tells the query that we want it to return the updated article -- it returns the original by default
             note: dbNote._id }, { new: true });
         })
         // Send Article back to client
         .then(function(dbArticle) {
+            console.log(dbArticle)
             res.json(dbArticle);
         })
         .catch(function(err) {
