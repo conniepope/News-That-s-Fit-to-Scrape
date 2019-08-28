@@ -1,21 +1,22 @@
-<h1>Good News Network Scraper</h1>
-
-<h2>News to make you smile... and LAUGH!</h2>
+<div id="header">
+    <h1>Good News Network Scraper</h1>
+    <h2>News to make you smile... and LAUGH!</h2>
+</div>
 
 {{!-- <button id="scraper">Show me the happy news!</button> --}}
-
+<div>
 <ul id="articles">
     {{#each Article}}
     {{/each}}
 </ul>
-
+</div>
 
 <!-- Modal for notes ------------------------- -->
 <div class="modal" id="notes" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">{{#each Article.title}}{{/each}}</h5>
+            <h5 class="modal-title">Write a note for this article: {{#each Article.title}}{{/each}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>

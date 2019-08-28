@@ -1,12 +1,48 @@
 h2 {
     font-family: 'Acme', sans-serif;
+    position: relative;
+    top: -10px;
+    left: 20px;
 }
     
 h1 {
     font-family: 'Happy Monkey', cursive;
-    color: purple;
+    color: rgb(230, 88, 36);
 }
 
 img {
     width: 400px;
+}
+
+body {
+    background-color: rgb(230, 88, 36);
+}
+
+#header {
+    background-color: white;
+    height: 100px;
+    padding-top: 10px;
+    padding-left: 20px;
+    border-bottom: 2px solid black;
+}
+
+#articles {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: 'Happy Monkey', cursive;
+}
+
+#button {
+    color: black;
+    font-family: 'Acme', sans-serif;
+    /* text-decoration: none; */
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    margin-left: 10px;
+}
+
+img {
+    border: 2px solid black; 
 }

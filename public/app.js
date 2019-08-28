@@ -7,17 +7,12 @@ $.getJSON("/articles", function(data) {
     for (var i = 0; i < data.length; i++) {
         //Display on page
         $("#articles").append(
-            "<h3 data-id='" + data[i]._id + "'>" + data[i].title + "</h3>",
-            "<a href='" + data[i].link + "' class='links'>Show Me the Story</a>",
-            "<img src='" + data[i].image + "' class='photos'</img>"
+            "<h4 data-id='" + data[i]._id + "'>" + data[i].title + "</h4>",
+            "<img src='" + data[i].image + "' class='photos'</img>",
+            // "<a href='" + data[i].link + "' class='links'>Show Me the Story</a>",
+            "<a role='button' class='links' id='button' href='" + data[i].link + "'>Link to the Story</a>",
+            "<p>", "<p>"
         );
-
-        // Styles set up, just need changed to fit design
-        $("a").css({
-            "color" : "blue",
-            "font-family": "Cursive"
-        });
-        $("img").css("border", "2px solid black")
     };
 });
 
@@ -37,8 +32,8 @@ $(document).on("click", "#scraper", function() {
 })
 
 //Listener for when client clicks an <h3> tag --------------
-$(document).on("click", "h3", function(){
-    console.log("h3 clicked");
+$(document).on("click", "h4", function(){
+    console.log("h4 clicked");
     //Empty notes from note section?
     // $("#notes").empty();
     //Save id from <p> tag to a variable
@@ -88,7 +83,7 @@ $(document).on("click", "#submitNote", function(){
     //Run POST request to change the note to the new input data values
     $.ajax({
         method: "POST",
-        url: "/articles" + articleID,
+        url: "/articles/" + articleID,
         data: {
             title: $("#titleInput").val(),
             body: $("#bodyInput").val()
@@ -100,6 +95,7 @@ $(document).on("click", "#submitNote", function(){
         console.log(data);
         //empty the notes section
         $("#notes").empty();
+        window.location.replace("/articles")
     })
     //Remove values from input & textarea for note entry
     $("#titleInput").val("");
