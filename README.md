@@ -1,9 +1,9 @@
 # News-That's-Fit-to-Scrape
 A web app that scrapes the Good News Network site for article, then lets users view and leave comments on the latest GOOD news.
 
-https://enigmatic-woodland-90933.herokuapp.com
-
 Technologies Used: HTML5, CSS3, Javascript, jQuery, Handelbars, Express, Mongoose, MongoDB, Cheerio, and Axios.
+
+https://enigmatic-woodland-90933.herokuapp.com
 
 ![image](https://user-images.githubusercontent.com/47279070/63889012-1d06fb00-c9ae-11e9-8a0c-b3568addf52f.png)
 
