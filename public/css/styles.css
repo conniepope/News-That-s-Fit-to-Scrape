@@ -14,8 +14,17 @@ img {
     width: 400px;
 }
 
+#sun {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: none;
+    z-index: -1;
+}
+
 body {
-    background-color: rgb(230, 88, 36);
+    /* background-color: rgb(230, 88, 36); */
+    background-image: url("/images/orange-gradient.jpg");
 }
 
 #header {
