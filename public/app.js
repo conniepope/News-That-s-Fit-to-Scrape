@@ -54,7 +54,7 @@ $(document).on("click", ".articleNotes", function(){
         id = articleID;   
         $("#notes").modal("show");
 
-        // //title
+        //title
         // $("#notes").append("<h4>" + data.title + "</h4>"),
         // //an input to enter a new title
         // ("<input id='titleInput' name='title'>"),
@@ -62,21 +62,24 @@ $(document).on("click", ".articleNotes", function(){
         // ("<textarea id='bodyInput' name='body'></textarea>"),
         // //a button to submit a new note (with the id of the article)
         // ("<button data-id='" + data._id + "' id='submitNote'>Save My Note</button>");
+        console.log(data.note)
 
         
-        // //IF there is a new note,
-        // if (data.note) {
-        //     //Place title of note in title input,
-        //     $("#titleInput").val(data.note.title);
-        //     //Place body of note in the body textarea
-        //     $("#bodyInput").val(data.note.body);
-        //     //post note to that article (in db)
-        //     $.ajax({
-        //         method: "POST",
-        //         url: "/articles/" + data._id
-        //     })
-        //     console.log("note posted")
-        // }
+        //IF there is a new note,
+        if (data.note) {
+            //Place title of note in title input,
+            $("#titleInput").val(data.note.title);
+            console.log(data.note.title)
+            //Place body of note in the body textarea
+            $("#bodyInput").val(data.note.body);
+            //post note to that article (in db)
+            // $.ajax({
+            //     method: "POST",
+            //     url: "/articles/" + data._id
+            // })
+            console.log("note posted")
+        }
+
     });    
 }) 
 
